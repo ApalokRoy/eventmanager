@@ -1,0 +1,19 @@
+<% provide(:title, @expense.name) %>
+<%= link_to 'Back', event_task_expenses_path(@event, @task), class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<div class="row">
+  <aside class="col-md-8">
+    <section class="user_info">
+      <h1> 
+	Expense Name: <strong> <%= @expense.name %> </strong><br><br>
+        Associated Task Name:  <%= @task.name %> <br><br>
+	Allocated Cost:  Rs &nbsp;<%= @expense.cost %>/- <br><br>
+      </h1>
+      <br><br>
+      <%=link_to 'Edit Expense', edit_event_task_expense_path(@event, @task, @expense) %>
+    </section>
+  </aside>
+</div>
+
+<br>
+

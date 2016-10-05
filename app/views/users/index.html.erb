@@ -1,0 +1,25 @@
+<% provide(:title, 'All Users') %>
+<%= link_to 'Back', user_path(current_user), class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<h1>List of Users</h1>
+
+<%= will_paginate %>
+
+<table class="users">
+  <tr>
+    <th> Names &nbsp;&nbsp;</th>
+    <th colspan="2"> </th>
+  </tr> 
+  <% @users.each do |user| %>
+    <tr>
+      <td><strong> <%=  user.name %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
+      <td><%=link_to 'View Profile', user_path(user) %> &nbsp;&nbsp;|&nbsp;&nbsp;<td>
+      <td><%=link_to 'Delete Profile', users_path(user), method: :delete, data: {confirm: 'Are You Sure?'} %></td>
+    </tr> 
+  <% end %>
+</table>
+
+<%= will_paginate %>
+<br>
+<br>
+

@@ -1,0 +1,43 @@
+<% provide(:title, "Edit Task") %>
+<%= link_to 'Back', event_tasks_path(@event), class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<h1>Update Selected Task</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @task, url: event_task_path(@task.event_id , @task.id), method: :put do |f| %>
+      <%= render 'shared/error_tasks' %>
+      <br>
+      <%= f.label :name, "Task Name" %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :"Event Name ( this is a read-only value )" %>
+      <%= f.collection_select :event_id, Event.all, :id, :name, prompt: 'Select Event', :readonly => true %>
+      <br>
+      <%= f.label :user_id, "Assign to:" %>
+      <%= f.collection_select :user_id, User.all, :id, :name, prompt: 'Select User' %>
+      <br>
+      <%= f.label :"Scheduled Date & Time" %>
+      <%= f.text_field :deadline, class: 'form-control datetimepicker' %>
+      <br>
+      <%= f.label :completed, "Complete" %><br>
+      <label class="radio-inline">
+        <input type="radio"  name="task[completed]" value="true"> Yes
+      </label>
+      <label class="radio-inline">
+        <input type="radio" class="radio1" name="task[completed]" value="false"> No
+      </label>
+      <br><br>
+      <%= f.submit "Update Task", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+
+<script type="text/javascript">
+  $(function(){
+    $('.datetimepicker').datetimepicker({format: 'YYYY/MM/DD hh:mm A'});
+  });
+
+</script>

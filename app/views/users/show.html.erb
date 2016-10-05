@@ -1,0 +1,30 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-8">
+    <section class="user_info">
+      <h1>
+        User Name: <%= @user.name %> <br><br>
+        Registered Mailing Address: <%= @user.email %> <br><br>
+      </h1>
+      <% if @tasks.count > 0 %>
+        <h1> <%= pluralize(@tasks.count, "task") %>  <%= @tasks.count >  1 ? "are" : "is" %> assigned to You :</h1>
+        <br>
+        <table>
+          <tr>
+            <td><h1> Task Name </h1></td>
+            <td> </td>
+          </tr>
+          <% @tasks.each do |task| %>
+            <% eventid = task.event_id %> 
+            <tr>
+              <td><h4> <%= task.name  %> &nbsp;&nbsp;&nbsp;&nbsp;</h4></td>
+              <td> <%= link_to "Click To View Task" , event_task_path(eventid, task) %> </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %> 
+        <h1> <%= "No tasks assigned" %> </h1>
+      <% end %>
+    </section>
+  </aside>
+</div>

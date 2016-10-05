@@ -1,0 +1,27 @@
+<% provide(:title, 'All Expenses') %>
+<%= link_to 'Back', event_tasks_path(@event), class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<h1>List of Expenses Associated with <%= @task.name %> </h1>
+
+<%= will_paginate %>
+
+<table class="expenses">
+  <tr>
+    <th> Names &nbsp;&nbsp;</th>
+    <th colspan="3"> </th>
+  </tr> 
+  <% @expenses.each do |expense| %>
+    <tr>
+      <td><strong> <%= link_to expense.name, event_task_expense_path(@event, @task, expense) %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
+      <td><%=link_to 'View Expense', event_task_expense_path(@event, @task, expense) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td><%=link_to 'Edit Expense', edit_event_task_expense_path(@event, @task, expense) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td><%=link_to 'Delete Expense', event_task_expense_path(@event, @task, expense), method: :delete, data: {confirm: 'Are You Sure?'} %> </td> 
+    </tr> 
+  <% end %>
+</table>
+
+<%= will_paginate %>
+<br>
+<%=link_to 'Add Expense', new_event_task_expense_path %>
+<br>
+

@@ -1,0 +1,26 @@
+<% provide(:title, "Edit Expense") %>
+<%= link_to 'Back', event_task_expenses_path(@event, @task), class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<h1>Update Selected Expense</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @expense, url: event_task_expense_path(@event, @task, @expense), method: :put  do |f| %>
+      <%= render 'shared/error_expenses' %>
+      <br>ly
+      <%= f.label :name, "Expense Name" %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <br>
+      <%= f.label :"Task Name ( this is a read-only field ) "%>
+      <%= f.collection_select :task_id, Task.all, :id, :name, prompt: 'Select Task', :readonly => true %>
+      <br>
+      <%= f.label :"Charges (in Rupees) " %>
+      <%= f.text_field :cost, class: 'form-control' %>
+      <br>
+      <%= f.submit "Update Expense", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+

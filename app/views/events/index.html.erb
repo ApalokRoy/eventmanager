@@ -1,0 +1,27 @@
+<% provide(:title, 'All Events') %>
+<%= link_to 'Back', root_path, class: "btn btn-lg btn-primary", id: "button1" %>
+<br>
+<h1>List of Events</h1>
+
+<%= will_paginate %>
+
+<table class="events">
+  <tr>
+    <th> Names &nbsp;&nbsp;</th>
+    <th colspan="4"> </th>
+  </tr> 
+  <% @events.each do |event| %>
+    <tr>
+      <td><strong> <%= link_to event.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
+      <td><%=link_to 'View Event', event_path(event) %> &nbsp;&nbsp;|&nbsp;&nbsp;<td>
+      <td><%=link_to 'Edit Event', edit_event_path(event) %>&nbsp;&nbsp; |&nbsp;&nbsp;</td>
+      <td><%=link_to 'Show Related Tasks', event_tasks_path(event) %> &nbsp;&nbsp;|&nbsp;&nbsp;</td>
+      <td><%=link_to 'Delete Event', event_path(event), method: :delete, data: {confirm: 'Are You Sure?'} %></td>
+    </tr> 
+  <% end %>
+</table>
+
+<%= will_paginate %>
+<br>
+<%=link_to 'Add New Events', new_event_path %>
+<br>
