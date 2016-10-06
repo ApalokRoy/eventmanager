@@ -7,14 +7,14 @@
 
 <table class="expenses">
   <tr>
-    <th><h4> Names &nbsp;&nbsp;</h4></th>
+    <th><h4> Names </h4></th>
     <th colspan="3"> </th>
   </tr>
   <% @expenses.each do |expense| %>
     <tr>
-      <td><strong> <%= expense.name %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
-      <td><%=link_to 'View Expense', event_task_expense_path(@event, @task, expense) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td><%=link_to 'Edit Expense', edit_event_task_expense_path(@event, @task, expense) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td><strong> <%=link_to expense.name, event_task_expense_path(@event, @task, expense) %> </strong></td>
+      <td><%=link_to 'View Expense', event_task_expense_path(@event, @task, expense) %>  </td>
+      <td><%=link_to 'Edit Expense', edit_event_task_expense_path(@event, @task, expense) %>  </td>
       <td><%=link_to 'Delete Expense', event_task_expense_path(@event, @task, expense), method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
     </tr>
   <% end %>

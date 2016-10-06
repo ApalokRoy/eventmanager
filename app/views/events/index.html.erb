@@ -7,15 +7,15 @@
 
 <table class="events">
   <tr>
-    <th><h4> Names &nbsp;&nbsp;</h4></th>
-    <th colspan="4"> </th>
+    <th><h4> Names </h4></th>
+    <th colspan="4"><h4> Links </h4></th>
   </tr>
   <% @events.each do |event| %>
     <tr>
-      <td><strong> <%= link_to event.name, event_path(event) %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
-      <td><%=link_to 'View Event', event_path(event) %> &nbsp;&nbsp;|&nbsp;&nbsp;<td>
-      <td><%=link_to 'Edit Event', edit_event_path(event) %>&nbsp;&nbsp; |&nbsp;&nbsp;</td>
-      <td><%=link_to 'Show Related Tasks', event_tasks_path(event) %> &nbsp;&nbsp;|&nbsp;&nbsp;</td>
+      <td><strong> <%= link_to event.name, event_path(event) %> </strong></td>
+      <td><%=link_to 'View Event', event_path(event) %> </td>
+      <td><%=link_to 'Edit Event', edit_event_path(event) %> </td>
+      <td><%=link_to 'Show Related Tasks', event_tasks_path(event) %> </td>
       <td><%=link_to 'Delete Event', event_path(event), method: :delete, data: {confirm: 'Are You Sure?'} %></td>
     </tr>
   <% end %>

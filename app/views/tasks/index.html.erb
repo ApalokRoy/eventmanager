@@ -7,22 +7,22 @@
 
 <table class="tasks">
   <tr>
-    <th><h4> Name &nbsp;&nbsp; </h4></th>
-    <th><h4> Status &nbsp;&nbsp; </h4></th>
-    <th><h4> Related Event &nbsp;&nbsp; </h4></th>
-    <th><h4> Person Assigned &nbsp;&nbsp; </h4></th>
-    <th colspan="5"> </th>
+    <th><h4> Name  </h4></th>
+    <th><h4> Status  </h4></th>
+    <th><h4> Related Event  </h4></th>
+    <th><h4> Person Assigned  </h4></th>
+    <th colspan="5"><h4> Links </h4></th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
-      <td><strong> <%= link_to task.name, event_task_path(@event,task) %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
-      <td> <%= task.completed? ?  "Complete" : "Pending" %> &nbsp;&nbsp; </td>
+      <td><strong> <%= link_to task.name, event_task_path(@event,task) %> </strong></td>
+      <td> <%= task.completed? ?  "Complete" : "Pending" %>  </td>
       <td> <%= task.event.name %>
-      <td> <%= task.user.try(:name) || "None"%> &nbsp;&nbsp; </td>
-      <td> <%=link_to 'View Task', event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td> <%=link_to 'Edit Task', edit_event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td> <%= if task.user_id.present? then link_to 'Deallocate User', deallocate_event_task_path(@event,task) end %>&nbsp;&nbsp;</td>
-      <td> | &nbsp;&nbsp; <%=link_to 'Show Related Expenses', event_task_expenses_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td> <%= task.user.try(:name) || "None"%>  </td>
+      <td> <%=link_to 'View Task', event_task_path(@event,task) %>  </td>
+      <td> <%=link_to 'Edit Task', edit_event_task_path(@event,task) %>  </td>
+      <td> <%= if task.user_id.present? then link_to 'Deallocate User', deallocate_event_task_path(@event,task) end %></td>
+      <td>   <%=link_to 'Show Related Expenses', event_task_expenses_path(@event,task) %>  </td>
       <td> <%=link_to 'Delete Task', event_task_path(@event,task), method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
     </tr>
   <% end %>
