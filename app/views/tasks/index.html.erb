@@ -1,32 +1,33 @@
 <% provide(:title, 'All Tasks') %>
 <%= link_to 'Back', events_path, class: "btn btn-lg btn-primary", id: "button1" %>
 <br>
-<h1>List of Tasks Associated with <%= @event.name %> </h1>
+<h1>Tasks Associated with <%= @event.name %> </h1>
 
 <%= will_paginate %>
 
 <table class="tasks">
   <tr>
-    <th> Name &nbsp;&nbsp;</th>
-    <th> Status &nbsp;&nbsp;</th>
-    <th> Person Assigned &nbsp;&nbsp; </th>
+    <th><h4> Name &nbsp;&nbsp; </h4></th>
+    <th><h4> Status &nbsp;&nbsp; </h4></th>
+    <th><h4> Related Event &nbsp;&nbsp; </h4></th>
+    <th><h4> Person Assigned &nbsp;&nbsp; </h4></th>
     <th colspan="5"> </th>
-  </tr> 
+  </tr>
   <% @tasks.each do |task| %>
     <tr>
       <td><strong> <%= link_to task.name, event_task_path(@event,task) %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
       <td> <%= task.completed? ?  "Complete" : "Pending" %> &nbsp;&nbsp; </td>
+      <td> <%= task.event.name %>
       <td> <%= task.user.try(:name) || "None"%> &nbsp;&nbsp; </td>
-      <td><%=link_to 'View Task', event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td><%=link_to 'Edit Task', edit_event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td><%= if task.user_id.present? then link_to 'Deallocate User', deallocate_event_task_path(@event,task) end %>&nbsp;&nbsp;</td>
+      <td> <%=link_to 'View Task', event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td> <%=link_to 'Edit Task', edit_event_task_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
+      <td> <%= if task.user_id.present? then link_to 'Deallocate User', deallocate_event_task_path(@event,task) end %>&nbsp;&nbsp;</td>
       <td> | &nbsp;&nbsp; <%=link_to 'Show Related Expenses', event_task_expenses_path(@event,task) %>&nbsp;&nbsp; | &nbsp;&nbsp;</td>
-      <td><%=link_to 'Delete Task', event_task_path(@event,task), method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
-    </tr> 
+      <td> <%=link_to 'Delete Task', event_task_path(@event,task), method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
+    </tr>
   <% end %>
 </table>
 <%= will_paginate %>
 <br>
 <%=link_to 'Add New Task ', new_event_task_path(@event) %>
 <br>
-

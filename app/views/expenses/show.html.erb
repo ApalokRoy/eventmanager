@@ -4,10 +4,10 @@
 <div class="row">
   <aside class="col-md-8">
     <section class="user_info">
-      <h1> 
-	Expense Name: <strong> <%= @expense.name %> </strong><br><br>
+      <h1>
+	      Expense Name: <strong> <%= @expense.name %> </strong><br><br>
         Associated Task Name:  <%= @task.name %> <br><br>
-	Allocated Cost:  Rs &nbsp;<%= @expense.cost %>/- <br><br>
+	      Allocated Cost:  Rs &nbsp;<%= @expense.cost %>/- <br><br>
       </h1>
       <br><br>
       <%=link_to 'Edit Expense', edit_event_task_expense_path(@event, @task, @expense) %>
@@ -16,4 +16,3 @@
 </div>
 
 <br>
-

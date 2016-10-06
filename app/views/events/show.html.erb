@@ -13,21 +13,25 @@
         <br>
         <table>
           <tr>
-            <td><h1> Task Name </h1></td>
+            <td><h4> Task Name &nbsp;&nbsp; </h4></td>
+            <td><h4> Deadline &nbsp;&nbsp; </h4></td>
+             <td><h4> Assigned To &nbsp;&nbsp; </h4></td>
             <td> </td>
-          <tr>   
+          <tr>
           <% @tasks.each do |task| %>
             <tr>
-              <td> <%= link_to task.name, event_task_path(@event, task) %> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+              <td><strong> <%= link_to task.name, event_task_path(@event, task) %> &nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
+              <td> <%= task.deadline %> &nbsp;&nbsp; </td>
+              <td> <%= task.user.try(:name) || "NONE" %> &nbsp;&nbsp; </td>
               <td> <%= link_to "Click To View Task" , event_task_path(@event, task) %> </td>
             </tr>
           <% end %>
         </table>
-        <br><br>  
-        <%= link_to "Add New Task" , new_event_task_path(@event) %>
+      <% else %>
+        <h1> <%= "No Tasks Assigned" %>
       <% end %>
+      <br><br>
+      <%= link_to "Add New Task" , new_event_task_path(@event) %>
     </section>
   </aside>
 </div>
-
-
