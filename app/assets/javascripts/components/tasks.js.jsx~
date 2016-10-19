@@ -1,0 +1,37 @@
+
+var Tasks = React.createClass({
+  render: function() {
+    return (
+      <div id="table">
+        <table className="tasks">
+          <tr>
+            <th><h4> Name  </h4></th>
+            <th><h4> Status  </h4></th>
+            <th><h4> Related Event  </h4></th>
+            <th><h4> Person Assigned  </h4></th>
+            <th><h4> Deadline  </h4></th>
+          </tr>
+          <tbody>
+            {this.props.tasks.map((person, i) => <TableRow key = {i} data = {person} />)}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+});
+
+class TableRow extends React.Component {
+   render() {
+      var eventid = this.props.data.event_id;
+      var event = Event.find(eventid);
+      return (
+         <tr>
+            <td>{this.props.data.name}</td>
+            <td>{this.props.data.completed ?  "Complete" : "Pending" }  </td>
+            <td>{this.props.data.event_id} </td>
+            <td>{this.props.data.user_id}</td>
+            <td> {this.props.data.deadline } </td>
+         </tr>
+      );
+   }
+}

@@ -70,7 +70,6 @@ class TasksController < ApplicationController
     else
       @task = task.update_attribute(:completed , false )
     end
-
     redirect_to tasks_path
   end
 
