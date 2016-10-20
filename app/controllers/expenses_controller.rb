@@ -11,13 +11,14 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = @task.expenses.new(expense_params)
-    
+
     if @expense.save
       flash[:success] = "Expense with #{@expense.name} is Created Successfully!"
       redirect_to event_task_expense_path(@event , @task , @expense)
     else
       render 'new'
     end
+
   end
 
   def edit
@@ -26,12 +27,14 @@ class ExpensesController < ApplicationController
 
   def update
     @expense = Expense.find(params[:id])
+
     if @expense.update_attributes(expense_params)
       flash[:success] = "Expense updated"
       redirect_to event_task_expense_path(@event, @task, @expense)
     else
       render 'edit'
     end
+
   end
 
   def index

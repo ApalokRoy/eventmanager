@@ -4,34 +4,3 @@
 <h1> All Tasks </h1>
 
 <%= react_component 'Tasks', { tasks: @tasks.as_json( :include=> { :event => { only: [:name] }, :user => { only: [:name] } }) } %>
-
-<br><br>
-<%= will_paginate %>
-
-<table class="tasks">
-  <tr>
-    <th><h4> Name  </h4></th>
-    <th><h4> Status  </h4></th>
-    <th><h4> Related Event  </h4></th>
-    <th><h4> Person Assigned  </h4></th>
-    <th><h4> Deadline  </h4></th>
-    <th colspan="5"><h4> Links </h4></th>
-  </tr>
-  <% @tasks.each do |task| %>
-    <% eventid = task.event_id %>
-    <% event = Event.find(eventid) %>
-    <tr>
-      <td><strong> <%= link_to task.name, event_task_path(eventid,task) %> </strong></td>
-      <td> <%= task.completed? ?  "Complete" : "Pending" %>  </td>
-      <td> <%= task.event.name %>
-      <td> <%= task.user.try(:name) || "None"%>  </td>
-      <td> <%= task.deadline.strftime("%A, %B %d , %Y at %I:%M %p") %>
-      <td> <%=link_to 'View Task', event_task_path(eventid,task) %>  </td>
-      <td> <%= if task.user_id.present? then link_to 'Deallocate User', deallocate_event_task_path(eventid,task) end %></td>
-      <td> <%=link_to 'Show Related Expenses', event_task_expenses_path(eventid,task) %>  </td>
-      <td> <%=link_to 'Delete Task', event_task_path(eventid,task), method: :delete, data: {confirm: 'Are You Sure?'} %> </td>
-    </tr>
-  <% end %>
-</table>
-<%= will_paginate %>
-<br>

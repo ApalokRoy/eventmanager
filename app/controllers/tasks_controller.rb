@@ -13,12 +13,14 @@ class TasksController < ApplicationController
 
   def create
     @task = @event.tasks.new(task_params)
+
     if @task.save
       flash[:success] = "Task with #{@task.name} is Created Successfully!"
       redirect_to event_task_path(@event, @task)
     else
       render 'new'
     end
+
   end
 
   def edit
@@ -50,7 +52,7 @@ class TasksController < ApplicationController
   # Task Deallocation
   def deallocate
     task = Task.find(params[:id])
-    @task= task.update_attribute(:user_id , nil)
+    @task = task.update_attribute(:user_id , nil)
     flash[:success] = "Task Deallocated Successfully!"
     redirect_to event_tasks_path(@event)
   end
@@ -62,10 +64,9 @@ class TasksController < ApplicationController
 
   #Changing The Status
   def changestatus
-    status = params[:status]
-    name = params[:name]
-    task= Task.find_by name: (name)
-    if status == 'true'
+    task = Task.find_by name: (params[:name])
+
+    if params[:status] == 'true'
       @task = task.update_attribute(:completed , true )
     else
       @task = task.update_attribute(:completed , false )
