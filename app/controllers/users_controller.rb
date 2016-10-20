@@ -10,14 +10,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       log_in @user
       flash[:success] = "#{@user.name}, Welcome to the Event Management System!"
-      redirect_to user_path(@user) 
+      redirect_to user_path(@user)
 
     else
       render 'new'
     end
+
   end
 
   def edit
@@ -26,12 +28,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to user_path(@user)
     else
       render 'edit'
     end
+
   end
 
   def index
@@ -43,7 +47,7 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted"
     redirect_to users_path
   end
- 
+
   private
 
   def user_params

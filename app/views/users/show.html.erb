@@ -20,10 +20,10 @@
           <% @tasks.each do |task| %>
             <% eventid = task.event_id %>
             <tr>
-              <td><h4><strong> <%= task.name  %> &nbsp;&nbsp;&nbsp;&nbsp;</strong></h4></td>
-              <td> <%= task.event.name  %> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-              <td> <%= task.deadline.strftime("%A, %B %d , %Y at %I:%M %p")  %> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-              <td> <%= task.completed? ? "Completed" : "Pending" %>  &nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td><h4><strong> <%= task.name  %> </strong></h4></td>
+              <td> <%= task.event.name  %> </td>
+              <td> <%= task.deadline.strftime("%A, %B %d , %Y at %I:%M %p")  %> </td>
+              <td> <%= task.completed? ? "Completed" : "Pending" %>  </td>
               <td> <%= link_to "Click To View Task" , event_task_path(eventid, task) %> </td>
             </tr>
           <% end %>

@@ -10,12 +10,14 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
     if @event.save
       flash[:success] = "Event with #{@event.name} is Created Successfully!"
       redirect_to event_path(@event)
     else
       render 'new'
     end
+
   end
 
   def edit
@@ -24,12 +26,14 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+
     if @event.update_attributes(event_params)
       flash[:success] = "Event updated"
       redirect_to event_path(@event)
     else
       render 'edit'
     end
+
   end
 
   def index
@@ -41,7 +45,7 @@ class EventsController < ApplicationController
     flash[:success] = "Event deleted"
     redirect_to events_path
   end
- 
+
   private
 
   def event_params

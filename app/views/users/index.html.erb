@@ -12,8 +12,8 @@
   </tr> 
   <% @users.each do |user| %>
     <tr>
-      <td><strong> <%=  user.name %>&nbsp;&nbsp;&nbsp;&nbsp; </strong></td>
-      <td><%=link_to 'View Profile', user_path(user) %> &nbsp;&nbsp;|&nbsp;&nbsp;<td>
+      <td><strong> <%=  user.name %> </strong></td>
+      <td><%=link_to 'View Profile', user_path(user) %> </td>
       <td><%=link_to 'Delete Profile', users_path(user), method: :delete, data: {confirm: 'Are You Sure?'} %></td>
     </tr> 
   <% end %>

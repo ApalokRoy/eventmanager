@@ -18,8 +18,6 @@ var Tasks = React.createClass({
         </table>
       </div>
     );
-
-   console.log(this.props.otherdata)
   }
 });
 
@@ -46,14 +44,17 @@ class TableRow extends React.Component {
    }
 
    render() {
+      var cts = this.props.data.deadline;
+      var scheduledate = moment(cts).format('dddd, MMMM Do YYYY,[ at]  h:mm a');
       return (
          <tr>
             <td>{this.props.data.name}</td>
             <td>{this.props.data.completed? 'Completed' : 'Pending' }  </td>
             <td> <input type="checkbox" defaultChecked = {this.props.data.completed} onClick={this.status.bind(this)} className="status" /> </td>
-            <td> {this.props.data.event.name} </td>
-            <td>{this.props.data.user_id ? this.props.data.user.name : ' ' }</td>
-            <td> {this.props.data.deadline } </td>
+            <td><a href={`/events/${this.props.data.event_id}`} > {this.props.data.event.name} </a></td>
+            <td><a href= {`/users/${this.props.data.user_id}`} >{this.props.data.user_id ? this.props.data.user.name : ' ' } </a></td>
+            <td> {scheduledate} </td>
+            <td><a href={`/events/${this.props.data.event_id}/tasks/${this.props.data.id}`} > View Task </a></td>
          </tr>
       );
    }
