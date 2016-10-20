@@ -2,7 +2,9 @@
   <div class="container">
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Event", events_path %></li>     
+        <% if logged_in? %>
+          <li><%= link_to "Event", events_path %></li>
+	<% end %>     
       </ul>
     </nav>
   </div>

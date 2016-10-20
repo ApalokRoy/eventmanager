@@ -18,6 +18,8 @@ var Tasks = React.createClass({
         </table>
       </div>
     );
+
+   console.log(this.props.otherdata)
   }
 });
 
@@ -26,31 +28,31 @@ class TableRow extends React.Component {
    constructor() {
      super();
      this.state = {
-       task : []
+
      }
    }
 
    status(e){
      var value = e.target.checked;
-     var taskname= e.target.parentNode.parentNode.childNodes[0].firstChild.nodeValue;
+     var taskname = e.target.parentNode.parentNode.childNodes[0].firstChild.nodeValue;
      $.ajax({
-       type: 'get',
+       type: 'post',
        url: '/change',
        data: {status: value , name: taskname },
-       success: function(data){
-         this.setState({task: data})
+       success: function(){
+         console.log("Successful")
        }.bind(this)
-    });
-  }
+     });
+   }
 
    render() {
       return (
          <tr>
             <td>{this.props.data.name}</td>
-            <td>{this.props.data.completed ?  "Complete" : "Pending" }  </td>
+            <td>{this.props.data.completed? 'Completed' : 'Pending' }  </td>
             <td> <input type="checkbox" defaultChecked = {this.props.data.completed} onClick={this.status.bind(this)} className="status" /> </td>
-            <td> {this.props.data.event_id} </td>
-            <td>{this.props.data.user_id}</td>
+            <td> {this.props.data.event.name} </td>
+            <td>{this.props.data.user_id ? this.props.data.user.name : ' ' }</td>
             <td> {this.props.data.deadline } </td>
          </tr>
       );

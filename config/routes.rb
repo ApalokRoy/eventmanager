@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get  '/tasks',  to: 'tasks#all'
-  get '/change', to: 'tasks#changestatus'
+  post '/change', to: 'tasks#changestatus'
 
   resources :events do
     resources :tasks do

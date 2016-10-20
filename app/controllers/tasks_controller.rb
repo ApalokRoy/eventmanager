@@ -71,7 +71,7 @@ class TasksController < ApplicationController
       @task = task.update_attribute(:completed , false )
     end
 
-    redirect_to tasks_path
+    redirect_to action: 'all'
   end
 
   private

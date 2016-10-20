@@ -3,7 +3,7 @@
 <br>
 <h1> All Tasks </h1>
 
-<%= react_component 'Tasks', { tasks: @tasks } %>
+<%= react_component 'Tasks', { tasks: @tasks.as_json( :include=> { :event => { only: [:name] }, :user => { only: [:name] } }) } %>
 
 <br><br>
 <%= will_paginate %>
