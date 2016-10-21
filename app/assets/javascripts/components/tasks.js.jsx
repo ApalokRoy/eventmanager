@@ -12,6 +12,7 @@ var Tasks = React.createClass({
               <th><h4> Related Event  </h4></th>
               <th><h4> Person Assigned  </h4></th>
               <th><h4> Deadline  </h4></th>
+              <th colSpan = "3" ><h4> Links  </h4></th>
             </tr>
             {this.props.tasks.map((task, i) => <TableRow key = {i} data = {task} />)}
           </tbody>
@@ -55,6 +56,7 @@ class TableRow extends React.Component {
             <td><a href= {`/users/${this.props.data.user_id}`} >{this.props.data.user_id ? this.props.data.user.name : ' ' } </a></td>
             <td> {scheduledate} </td>
             <td><a href={`/events/${this.props.data.event_id}/tasks/${this.props.data.id}`} > View Task </a></td>
+            <td><a href={`/events/${this.props.data.event_id}/tasks/${this.props.data.id}/edit`} > Edit Task </a></td>
          </tr>
       );
    }

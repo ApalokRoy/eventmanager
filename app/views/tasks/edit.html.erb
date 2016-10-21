@@ -20,12 +20,12 @@
       <%= f.text_field :deadline, class: 'form-control datetimepicker' %>
       <br>
       <%= f.label :completed, "Complete" %><br>
-      <label class="radio-inline">
-        <input type="radio"  name="task[completed]" value="true"> Yes
-      </label>
-      <label class="radio-inline">
-        <input type="radio" class="radio1" name="task[completed]" value="false"> No
-      </label>
+      <table class= "update">
+      <tr>
+      <td><%= "Yes" %><%= f.radio_button 'completed', 'true'  %></td>
+      <td><%= "No" %><%= f.radio_button 'completed', 'false'  %></td>
+      </tr>
+      </table>
       <br><br>
       <%= f.submit "Update Task", class: "btn btn-primary" %>
     <% end %>

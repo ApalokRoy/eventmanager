@@ -199,3 +199,13 @@ table {
     border-spacing: 5px;
     width: 100%;
 }
+
+table.update{
+    border: none;
+    th{
+      border: none;
+    }
+    td{
+      border: none;
+    }
+}
